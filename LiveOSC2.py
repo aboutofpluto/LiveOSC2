@@ -8,6 +8,7 @@ from LO2TransportComponent import LO2TransportComponent
 from LO2Mixin import LO2Mixin
 from LO2OSC import LO2OSC
 
+import socket
 
 class LiveOSC2(ControlSurface):
 
@@ -18,7 +19,11 @@ class LiveOSC2(ControlSurface):
         with self.component_guard():
             LO2OSC.set_log(self.log_message)
             LO2OSC.set_message(self.show_message)
-            self.osc_handler = LO2OSC()
+            try:
+                ip = socket.gethostbyname(socket.gethostname())
+            except:
+                ip = "127.0.0.1"
+            self.osc_handler = LO2OSC(localhost=ip)
             
             LO2Mixin.set_osc_handler(self.osc_handler)
             LO2Mixin.set_log(self.log_message)
@@ -31,7 +36,7 @@ class LiveOSC2(ControlSurface):
             self.parse()
 
             if not self.osc_handler.error():
-                self.show_message('Ready')
+                self.show_message('Ready on %s' % (str(self.osc_handler._local_addr)))
                 self.osc_handler.send('/live/startup', 1)
 
 
