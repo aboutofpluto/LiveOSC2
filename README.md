@@ -5,7 +5,7 @@ New version of LiveOSC for Live 9. Added various new functionality from L9, like
 
 I have tidied up most of the calls to group them by type, as well as removing what i believe to be redundant calls. If you think things are missing please get in touch.
 
-LiveOSC binds to localhost by default receiving OSC on 9000 and sending on 9001  
+LiveOSC binds to your local IP address or localhost by default receiving OSC on 9001 and sending on 9000  
 You can change this dyncamically using:
     /live/set_peer [host] [port]
 
@@ -21,7 +21,8 @@ Installation
 ------------
 * Checkout the master branch
 * Rename LiveOSC2-master to LiveOSC2
-* Move the folder to /Applications/Live xxxx/Contents/App-Resources/MIDI Remote Scripts
+* MAC OS X: Move the folder to /Applications/Live xxxx/Contents/App-Resources/MIDI Remote Scripts
+* Windows 10: Move the folder to C:\ProgramData\Ableton/Live xxxx/Resources/MIDI Remote Scripts
 
 
 Song
